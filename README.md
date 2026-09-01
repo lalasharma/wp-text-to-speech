@@ -49,7 +49,7 @@ A lightweight WordPress plugin that adds text-to-speech functionality to your we
 1. Go to **Text to Speech** in the WordPress admin menu
 2. Configure the following settings:
    - **Enable Plugin**: Toggle to enable/disable the entire feature
-   - **Voice Language**: Select from 9 supported languages
+   - **Voice Language**: Select from 10 supported languages
    - **Voice Speed**: Set playback speed (0.5x - 2.0x normal speed)
    - **Voice Pitch**: Adjust voice pitch (0.5 - 2.0)
    - **Show Player Button**: Enable/disable the listening interface
@@ -67,6 +67,7 @@ A lightweight WordPress plugin that adds text-to-speech functionality to your we
 - Portuguese (Brazil)
 - Japanese
 - Chinese (Simplified)
+- Hindi
 
 ## Browser Support
 
@@ -141,6 +142,9 @@ The plugin is lightweight and has minimal impact on page load times:
 - No external data is transmitted without user consent
 
 ## Changelog
+
+### Version 1.1.0
+- Added Hindi language support
 
 ### Version 1.0.0
 - Initial release
