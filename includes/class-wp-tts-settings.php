@@ -41,6 +41,7 @@ class WP_TTS_Settings {
                                 <option value="pt-BR" <?php selected($settings['voice_lang'] ?? '', 'pt-BR'); ?>>Portuguese (Brazil)</option>
                                 <option value="ja-JP" <?php selected($settings['voice_lang'] ?? '', 'ja-JP'); ?>>Japanese</option>
                                 <option value="zh-CN" <?php selected($settings['voice_lang'] ?? '', 'zh-CN'); ?>>Chinese (Simplified)</option>
+                                <option value="hi-IN" <?php selected($settings['voice_lang'] ?? '', 'hi-IN'); ?>>Hindi</option>
                             </select>
                             <p class="description">Select the language for text-to-speech</p>
                         </td>
