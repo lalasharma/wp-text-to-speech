@@ -8,6 +8,7 @@
         synth: window.speechSynthesis,
         
         init: function() {
+            console.log('TTS Plugin Initialized');
             this.cacheElements();
             this.bindEvents();
         },
@@ -17,11 +18,16 @@
             this.pauseBtn = document.getElementById('wp-tts-pause-btn');
             this.stopBtn = document.getElementById('wp-tts-stop-btn');
             this.progressBar = document.getElementById('wp-tts-progress-bar');
+            
+            console.log('Play Btn:', this.playBtn);
+            console.log('Pause Btn:', this.pauseBtn);
+            console.log('Stop Btn:', this.stopBtn);
         },
 
         bindEvents: function() {
             if (this.playBtn) {
                 this.playBtn.addEventListener('click', this.play.bind(this));
+                console.log('Play button event bound');
             }
             if (this.pauseBtn) {
                 this.pauseBtn.addEventListener('click', this.pause.bind(this));
@@ -40,10 +46,13 @@
             if (article) {
                 return article.innerText;
             }
-            return document.body.innerText;
+            // Fallback to body content
+            const body = document.querySelector('.wp-content') || document.querySelector('.content') || document.body;
+            return body ? body.innerText : '';
         },
 
         play: function() {
+            console.log('Play clicked');
             if (this.isPlaying) {
                 return;
             }
@@ -55,7 +64,9 @@
             }
 
             const text = this.getContentText();
-            if (!text) {
+            console.log('Content length:', text.length);
+            
+            if (!text || text.trim().length === 0) {
                 alert('No content found to read.');
                 return;
             }
@@ -70,6 +81,10 @@
             // Set language
             const lang = wpTtsSettings.voiceLang || 'en-US';
             this.utterance.lang = lang;
+            
+            console.log('Language set to:', lang);
+            console.log('Speed:', this.utterance.rate);
+            console.log('Pitch:', this.utterance.pitch);
 
             this.utterance.onstart = this.onStart.bind(this);
             this.utterance.onend = this.onEnd.bind(this);
@@ -83,6 +98,7 @@
         },
 
         pause: function() {
+            console.log('Pause clicked');
             if (this.synth && this.isPlaying) {
                 this.synth.pause();
                 this.isPaused = true;
@@ -91,6 +107,7 @@
         },
 
         stop: function() {
+            console.log('Stop clicked');
             if (this.synth) {
                 this.synth.cancel();
                 this.isPlaying = false;
@@ -104,6 +121,7 @@
         },
 
         onStart: function() {
+            console.log('Speech started');
             this.isPlaying = true;
             this.isPaused = false;
             this.updateButtons();
@@ -113,6 +131,7 @@
         },
 
         onEnd: function() {
+            console.log('Speech ended');
             this.isPlaying = false;
             this.isPaused = false;
             this.updateButtons();
@@ -125,11 +144,13 @@
         },
 
         onPause: function() {
+            console.log('Speech paused');
             this.isPaused = true;
             this.updateButtons();
         },
 
         onResume: function() {
+            console.log('Speech resumed');
             this.isPaused = false;
             this.updateButtons();
         },
